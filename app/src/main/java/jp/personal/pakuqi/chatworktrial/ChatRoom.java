@@ -29,6 +29,7 @@ public class ChatRoom extends AppCompatActivity implements View.OnClickListener 
     TextView mRoomText;         //チャットルーム名
     EditText mChatEditText;     //投稿内容入力欄
     String roomId;
+    String APITOKEN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,7 @@ public class ChatRoom extends AppCompatActivity implements View.OnClickListener 
         Intent intent = getIntent();
         roomId = intent.getStringExtra("chatroom.id");              //チャットルームID（投稿に必要）
         String roomName = intent.getStringExtra("chatroom.name");   //チャットルーム名（画面に表示）
+        APITOKEN = intent.getStringExtra("apitoken");
 
         //IDを元にボタンのインスタンスを取得する
         mSubmitBtn = (Button) findViewById(R.id.submit_btn);        //投稿ボタン
@@ -136,13 +138,10 @@ public class ChatRoom extends AppCompatActivity implements View.OnClickListener 
                 @Override
                 public Map<String, String> getHeaders() throws AuthFailureError {
                     //getHeaders()メソッドをオーバーライドしてHTTPヘッダにAPI TOKENを設定する
-
-                    String aPItOKEN = "8ffe5c96620d3cc431cfc1dd271736b9"; //仮
-
                     //HashMapを生成
                     Map<String,String> params = new HashMap<String, String>();
                     //パラメータ：X-ChatWorkTokenにログイン画面で入力したAPI TOKENを設定する
-                    params.put("X-ChatWorkToken", aPItOKEN);
+                    params.put("X-ChatWorkToken", APITOKEN);
 
                     return params;
                 }

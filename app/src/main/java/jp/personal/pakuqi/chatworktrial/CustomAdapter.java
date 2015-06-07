@@ -44,8 +44,13 @@ public class CustomAdapter extends ArrayAdapter<RoomBean> {
         //RoomBeanのデータをViewの各Widgetにセットする
 
         //画像
-        NetworkImageView image = (NetworkImageView)convertView.findViewById(R.id.image);
-        image.setImageUrl(item.getiConPath(), mImageLoader);
+        if(item.getiConPath().equals("no_data")) {
+            //データなし
+        }
+        else{
+            NetworkImageView image = (NetworkImageView) convertView.findViewById(R.id.image);
+            image.setImageUrl(item.getiConPath(), mImageLoader);
+        }
 
         //部屋の名前
         TextView nameTextView;

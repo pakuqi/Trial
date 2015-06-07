@@ -15,11 +15,11 @@ import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 
 import java.util.ArrayList;
-//import android.R.id;
 
 import jp.personal.pakuqi.chatworktrial.javabeans.RoomBean;
 
 public class ChatRoomList extends ListActivity  {
+    String APITOKEN;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,6 +43,7 @@ public class ChatRoomList extends ListActivity  {
 
             //ログイン画面からListに表示するデータのArrayListを受け取る
             ArrayList<RoomBean> roomObject = intent.getParcelableArrayListExtra("jp.personal.pakuqi.chatworktrial.roomObject");
+            APITOKEN = intent.getStringExtra("jp.personal.pakuqi.chatworktrial.APITOKEN");
 
             //カスタマイズしたAdapterを生成する
             CustomAdapter customAdapater = new CustomAdapter(this, 0, roomObject, mImageLoader);
@@ -73,6 +74,7 @@ public class ChatRoomList extends ListActivity  {
         //パラメータにタップした行のISBN番号を設定する
         intent.putExtra("chatroom.id", roomId.getText().toString());
         intent.putExtra("chatroom.name", roomName.getText().toString());
+        intent.putExtra("apitoken", APITOKEN);
 
         //Activityを開始する
         startActivity(intent);
