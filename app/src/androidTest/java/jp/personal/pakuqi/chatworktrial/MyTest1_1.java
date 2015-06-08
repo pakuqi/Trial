@@ -40,7 +40,7 @@ public class MyTest1_1 extends ActivityInstrumentationTestCase2<LoginActivity> {
 
     @Test
     public void checkText() {
-        onView(withId(R.id.message_text)).check(matches(withText("APP TOKEN")));
+        onView(withId(R.id.message_text)).check(matches(withText("API TOKEN")));
     }
 
 }
